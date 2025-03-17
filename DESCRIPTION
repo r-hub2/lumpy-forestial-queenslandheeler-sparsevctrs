@@ -28,7 +28,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 NeedsCompilation: yes
-Packaged: 2025-03-17 15:20:02 UTC; emilhvitfeldt
+Packaged: 2025-03-17 15:47:51 UTC; emilhvitfeldt
 Author: Emil Hvitfeldt [aut, cre] (<https://orcid.org/0000-0002-0679-1945>),
   Davis Vaughan [ctb],
   Posit Software, PBC [cph, fnd]

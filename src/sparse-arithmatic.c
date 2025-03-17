@@ -606,12 +606,12 @@ SEXP multiplication_integers_sparse_dense(SEXP x, SEXP y) {
 
     if (y_val != 0) {
       SET_INTEGER_ELT(out_pos, idx, cur_pos);
-      if (y_val == NA_INTEGER) {
-        SET_INTEGER_ELT(out_val, idx, y_val);
-      } else {
-        int cur_val = INTEGER_ELT(x_val, i);
-        SET_INTEGER_ELT(out_val, idx, y_val * cur_val);
-      }
+      // if (y_val == NA_INTEGER) {
+      //   SET_INTEGER_ELT(out_val, idx, y_val);
+      // } else {
+      int cur_val = INTEGER_ELT(x_val, i);
+      SET_INTEGER_ELT(out_val, idx, y_val * cur_val);
+      //}
       idx++;
     }
   }
