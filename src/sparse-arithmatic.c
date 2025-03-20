@@ -68,6 +68,7 @@ SEXP find_overlap(SEXP x, SEXP y) {
   }
 
   if (n == 0) {
+    UNPROTECT(2);
     return R_NilValue;
   }
 
@@ -326,7 +327,7 @@ SEXP multiplication_doubles_sparse_dense(SEXP x, SEXP y) {
     }
   }
 
-  SEXP y_na_pos = Rf_allocVector(INTSXP, n_y_nas);
+  SEXP y_na_pos = PROTECT(Rf_allocVector(INTSXP, n_y_nas));
   R_xlen_t idx = 0;
 
   for (R_xlen_t i = 0; i < y_len; i++) {
@@ -353,7 +354,7 @@ SEXP multiplication_doubles_sparse_dense(SEXP x, SEXP y) {
     }
   }
 
-  SEXP x_na_pos = Rf_allocVector(INTSXP, n_x_nas);
+  SEXP x_na_pos = PROTECT(Rf_allocVector(INTSXP, n_x_nas));
   idx = 0;
 
   for (R_xlen_t i = 0; i < n_values; i++) {
@@ -370,8 +371,8 @@ SEXP multiplication_doubles_sparse_dense(SEXP x, SEXP y) {
   }
 
   R_xlen_t out_len = n_values - n_zero + n_x_nas + n_y_nas;
-  SEXP out_pos = Rf_allocVector(INTSXP, out_len);
-  SEXP out_val = Rf_allocVector(REALSXP, out_len);
+  SEXP out_pos = PROTECT(Rf_allocVector(INTSXP, out_len));
+  SEXP out_val = PROTECT(Rf_allocVector(REALSXP, out_len));
 
   idx = 0;
 
@@ -408,11 +409,12 @@ SEXP multiplication_doubles_sparse_dense(SEXP x, SEXP y) {
 
   sort_pos_and_val(out_pos, out_val);
 
-  SEXP out_length = Rf_ScalarInteger((int) x_len);
-  SEXP out_default = Rf_ScalarReal(0);
+  SEXP out_length = PROTECT(Rf_ScalarInteger((int) x_len));
+  SEXP out_default = PROTECT(Rf_ScalarReal(0));
 
   SEXP out = new_sparse_double(out_val, out_pos, out_length, out_default);
 
+  UNPROTECT(6);
   return out;
 }
 
