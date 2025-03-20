@@ -1,5 +1,11 @@
 # sparsevctrs (development version)
 
+* Fixed bug where `sparsity()` error on numeric vectors with classes. (#106)
+
+# sparsevctrs 0.3.1
+
+* Fixed bug where sparse multiplication caused undefined behaviour. ($103)
+
 # sparsevctrs 0.3.0
 
 ## New Functions

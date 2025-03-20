@@ -5,23 +5,25 @@
 
 SEXP empty_sparse_integer(R_xlen_t len) {
   SEXP out = new_sparse_integer(
-      Rf_allocVector(INTSXP, 0),
-      Rf_allocVector(INTSXP, 0),
-      Rf_ScalarInteger((int) len),
-      Rf_ScalarInteger(0)
+      PROTECT(Rf_allocVector(INTSXP, 0)),
+      PROTECT(Rf_allocVector(INTSXP, 0)),
+      PROTECT(Rf_ScalarInteger((int) len)),
+      PROTECT(Rf_ScalarInteger(0))
   );
 
+  UNPROTECT(4);
   return out;
 }
 
 SEXP empty_sparse_double(R_xlen_t len) {
   SEXP out = new_sparse_double(
-      Rf_allocVector(REALSXP, 0),
-      Rf_allocVector(INTSXP, 0),
-      Rf_ScalarInteger((int) len),
-      Rf_ScalarReal(0)
+      PROTECT(Rf_allocVector(REALSXP, 0)),
+      PROTECT(Rf_allocVector(INTSXP, 0)),
+      PROTECT(Rf_ScalarInteger((int) len)),
+      PROTECT(Rf_ScalarReal(0))
   );
 
+  UNPROTECT(4);
   return out;
 }
 
