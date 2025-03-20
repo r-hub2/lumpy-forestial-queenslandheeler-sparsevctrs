@@ -38,8 +38,8 @@ SEXP find_overlap(SEXP x, SEXP y) {
     return R_NilValue;
   }
 
-  SEXP x_matches = Rf_allocVector(INTSXP, x_len);
-  SEXP y_matches = Rf_allocVector(INTSXP, y_len);
+  SEXP x_matches = PROTECT(Rf_allocVector(INTSXP, x_len));
+  SEXP y_matches = PROTECT(Rf_allocVector(INTSXP, y_len));
   for (R_xlen_t i = 0; i < x_len; i++) {
     SET_INTEGER_ELT(x_matches, i, 0);
   }
@@ -96,7 +96,7 @@ SEXP find_overlap(SEXP x, SEXP y) {
     }
   }
 
-  UNPROTECT(1);
+  UNPROTECT(3);
   return out;
 }
 
@@ -127,8 +127,8 @@ SEXP find_nas_with_no_overlap(SEXP x, SEXP y) {
     return R_NilValue;
   }
 
-  SEXP x_matches = Rf_allocVector(INTSXP, x_len);
-  SEXP y_matches = Rf_allocVector(INTSXP, y_len);
+  SEXP x_matches = PROTECT(Rf_allocVector(INTSXP, x_len));
+  SEXP y_matches = PROTECT(Rf_allocVector(INTSXP, y_len));
 
   for (R_xlen_t i = 0; i < x_len; i++) {
     if (Rf_isInteger(x_val)) {
@@ -218,7 +218,7 @@ SEXP find_nas_with_no_overlap(SEXP x, SEXP y) {
     }
   }
 
-  UNPROTECT(1);
+  UNPROTECT(3);
   return out;
 }
 
